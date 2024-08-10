@@ -11,3 +11,6 @@ fn sum(x: u32, y: u32) -> u32 {
     let sum: u32 = x + y;
     sum
 }
+
+
+// xxd -g 1 -c 8 main  | display binary files
