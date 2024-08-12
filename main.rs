@@ -1,23 +1,17 @@
 fn main() {
-    let x: u32 = 10;
-    let y: u32 = x; // stack
+    let message: String = String::from("Hello"); // message coming into the scope
+    print_message(message); // message is moved into this function
+    // message is not longer valid
+}
+// message is going out of scope, but nothing will happen because it was moved
 
-    let sum = sum(x, y);
-
-    println!("{}", sum);
-
-    let message: &str = "Hello";
-
-    let message_2: String = String::from("Hello_2"); // heap
-
-    let message_3: String = message_2; // copy pointer
-
-    println!("{}", message_3);
+fn print_message(a: String) { // a comes into the scope
+    println!("{}", a); //prints
+    let c: String = a; // c is coming into the scope and a is moved into c;
+    println!("{}", c); //prints
+    // a is no longer valid;
 }
 
-fn sum(x: u32, y: u32) -> u32 {
-    let sum: u32 = x + y;
-    sum
-}
+// a is going out of scope, but nothing will happen because it was moved
 
-// xxd -g 1 -c 8 main  | display binary files
+// c is going out of scope and "drop" is called which clears the memory from the heap
