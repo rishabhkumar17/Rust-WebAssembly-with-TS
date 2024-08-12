@@ -1,10 +1,14 @@
 fn main() {
     let x: u32 = 10;
-    let y: u32 = x;
+    let y: u32 = x; // stack
 
     let sum = sum(x, y);
 
     println!("{}", sum);
+
+    let message: &str = "Hello";
+
+    let message2: String = String::from("Hello_2"); // heap
 }
 
 fn sum(x: u32, y: u32) -> u32 {
