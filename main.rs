@@ -1,12 +1,10 @@
 fn main() {
     let mut message: String = String::from("hello");
-    let message_2: &mut String = &mut message; // mutable borrow
+    let message_2: &mut String = &mut message;
 
-    unpredictable_mutate(message_2);  
-    println!("{}", message);
-    // println!("{}", message_2);
-}
+    (*message_2).push_str(" world"); // Dereferenced from: &mut String | To type: String | Coerced to: &mut String
 
-fn unpredictable_mutate(val: &mut String) {
-    val.push_str("_unpredictable");
+    message_2.push_str(" world"); // Type: &mut String | Coerced to: &mut String
+
+    println!("{}", message_2);
 }
