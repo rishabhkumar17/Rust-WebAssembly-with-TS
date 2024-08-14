@@ -1,10 +1,8 @@
 fn main() {
-    let mut message: String = String::from("hello");
-    let message_2: &mut String = &mut message;
+    let a: i32 = 27;
+    let b: &i32 = &a;
+    let c: &&i32 = &b;
 
-    (*message_2).push_str(" world"); // Dereferenced from: &mut String | To type: String | Coerced to: &mut String
-
-    message_2.push_str(" world"); // Type: &mut String | Coerced to: &mut String
-
-    println!("{}", message_2);
+    println!("{}", a == *b); // dereferencing b using *
+    println!("{}", a == **c);
 }
