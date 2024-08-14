@@ -1,10 +1,9 @@
 fn main() {
-   let message: String = String::from("hello");
-   let message_2: &String = &message; // pointer
-    // message_2 is not owner of data
-    // message_2 is "borrowing" a reference to message
+    let mut message: String = String::from("hello");
+    let message_2: &mut String = &mut message; // mutable borrow
 
-   println!("{}", message);
-   println!("{}", message_2); 
+    message_2.push_str(" world");
+
+    println!("{}", message);
+    // println!("{}", message_2);
 }
-
