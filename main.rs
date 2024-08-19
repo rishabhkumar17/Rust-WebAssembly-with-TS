@@ -11,6 +11,8 @@ struct Person {
     id: PersonId,
 }
 
+struct Animal(String, u32, String); // no fields
+
 impl Person {
     //constructors
     fn new() -> Person {
@@ -67,6 +69,12 @@ fn main() {
     check_person_id(person.id);
 
     check_person_id(person_2.id);
+
+    let animal: Animal = Animal("dog".to_string(), 7, "Indie".to_string());
+
+    let Animal(animal_type, age, breed) = animal;
+
+    println!("{}", animal_type);
 }
 
 fn check_person_id(id: PersonId) {
