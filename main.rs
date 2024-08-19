@@ -1,6 +1,14 @@
+#[derive(Debug)]
+enum PersonId {
+    // either Passport or IdentityCard
+    Passport(String),
+    IdentityCard(String),
+}
+
 struct Person {
     name: String, // fields
     age: u32,
+    id: PersonId,
 }
 
 impl Person {
@@ -9,11 +17,12 @@ impl Person {
         Person {
             name: "Default".to_string(),
             age: 0,
+            id: PersonId::IdentityCard("ID123".to_string()),
         }
     }
 
-    fn from(name: String, age: u32) -> Person {
-        Person { name, age }
+    fn from(name: String, age: u32, id: PersonId) -> Person {
+        Person { name, age, id }
     }
 
     // associated function -> can only be assesed by struct
@@ -37,12 +46,16 @@ fn main() {
     Person::some_function();
 
     let mut person: Person = Person::new();
-    let person_2: Person = Person::from("sage".to_string(), 17);
+    let person_2: Person = Person::from(
+        "sage".to_string(),
+        17,
+        PersonId::Passport("Pass123".to_string()),
+    );
 
     person.display_age();
 
     person.change_age(28);
 
-    println!("{} {}", person.name, person.age);
-    println!("{} {}", person_2.name, person_2.age);
+    println!("{} {} {:?}", person.name, person.age, person.id);
+    println!("{} {} {:?}", person_2.name, person_2.age, person_2.id);
 }
