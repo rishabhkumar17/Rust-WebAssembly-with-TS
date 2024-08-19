@@ -2,7 +2,7 @@
 enum PersonId {
     // either Passport or IdentityCard
     Passport(String),
-    IdentityCard(String),
+    IdentityCard(String, u32, u32),
 }
 
 struct Person {
@@ -17,7 +17,7 @@ impl Person {
         Person {
             name: "Default".to_string(),
             age: 0,
-            id: PersonId::IdentityCard("ID123".to_string()),
+            id: PersonId::IdentityCard("ID".to_string(), 1, 2),
         }
     }
 
@@ -40,6 +40,10 @@ impl Person {
     fn change_age(&mut self, new_age: u32) {
         self.age = new_age;
     }
+
+    fn display_info(&self) {
+        println!("{} {} {:?}", self.name, self.age, self.id);
+    }
 }
 
 fn main() {
@@ -56,6 +60,22 @@ fn main() {
 
     person.change_age(28);
 
-    println!("{} {} {:?}", person.name, person.age, person.id);
-    println!("{} {} {:?}", person_2.name, person_2.age, person_2.id);
+    person.display_info();
+
+    person_2.display_info();
+
+    check_person_id(person.id);
+
+    check_person_id(person_2.id);
+}
+
+fn check_person_id(id: PersonId) {
+    match id {
+        PersonId::IdentityCard(x, y, z) => {
+            println!("{} {} {}", x, y, z);
+        }
+        PersonId::Passport(x) => {
+            println!("{}", x)
+        }
+    }
 }
