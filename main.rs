@@ -2,7 +2,7 @@
 
 trait Log {
     fn display_info(&self);
-    fn alert_something() {
+    fn alert_something(&self) {
         println!("Default")
     }
 }
@@ -31,6 +31,9 @@ struct Animal(String, u32, String); // no fields
 impl Log for Animal {
     fn display_info(&self) {
         println!("{}", self.0);
+    }
+    fn alert_something(&self) {
+        println!("Default Animal");
     }
 }
 
@@ -70,52 +73,25 @@ impl Person {
 }
 
 fn main() {
-    Person::some_function();
+    let person = Person::new();
+    let animal = Animal("dog".to_string(), 2, "indie".to_string());
 
-    let mut person: Person = Person::new();
-    let person_2: Person = Person::from(
-        "sage".to_string(),
-        17,
-        PersonId::Passport("Pass123".to_string()),
-    );
+    // person.alert_something();
+    // animal.alert_something();
 
-    person.display_age();
+    // logger(animal);
+    logger(person);
 
-    person.change_age(28);
-
-    person.display_info();
-
-    person_2.display_info();
-
-    check_person_id(person.id);
-
-    check_person_id(person_2.id);
-
-    let animal: Animal = Animal("dog".to_string(), 7, "Indie".to_string());
-
-    let Animal(ref animal_type, age, ref breed) = animal;
-
-    println!("{}", animal_type);
-
-    animal.display_info();
-
-    Person::alert_something();
-    Animal::alert_something();
+    logger_2(&animal);
 }
 
-fn check_person_id(id: PersonId) {
-    if let PersonId::Passport(ref num) = id {
-        println!("Matching");
-    } else {
-        println!("Not Matching");
-    }
+// impl makes the compiler determine type at the compile time
+// it will create mutiple versions of the funtion depends how many types Log traits implements(Animal, Person)
+fn logger(val: impl Log) {
+    val.alert_something();
+}
 
-    match id {
-        PersonId::IdentityCard(x, y, z) => {
-            println!("{} {} {}", x, y, z);
-        }
-        PersonId::Passport(x) => {
-            println!("{}", x)
-        }
-    }
+// dyn is short for dynamic, function performs dynamic dispatch -> dicision of exactly which function to call at the run time
+fn logger_2(val: &dyn Log) {
+    val.alert_something();
 }
