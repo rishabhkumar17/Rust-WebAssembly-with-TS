@@ -1,3 +1,12 @@
+// trait
+
+trait Log {
+    fn display_info(&self);
+    fn alert_something() {
+        println!("Default")
+    }
+}
+
 #[derive(Debug)]
 enum PersonId {
     // either Passport or IdentityCard
@@ -11,7 +20,19 @@ struct Person {
     id: PersonId,
 }
 
+impl Log for Person {
+    fn display_info(&self) {
+        println!("{} {} {:?}", self.name, self.age, self.id);
+    }
+}
+
 struct Animal(String, u32, String); // no fields
+
+impl Log for Animal {
+    fn display_info(&self) {
+        println!("{}", self.0);
+    }
+}
 
 impl Person {
     //constructors
@@ -43,9 +64,9 @@ impl Person {
         self.age = new_age;
     }
 
-    fn display_info(&self) {
-        println!("{} {} {:?}", self.name, self.age, self.id);
-    }
+    // fn display_info(&self) {
+    //     println!("{} {} {:?}", self.name, self.age, self.id);
+    // }
 }
 
 fn main() {
@@ -72,9 +93,14 @@ fn main() {
 
     let animal: Animal = Animal("dog".to_string(), 7, "Indie".to_string());
 
-    let Animal(animal_type, age, breed) = animal;
+    let Animal(ref animal_type, age, ref breed) = animal;
 
     println!("{}", animal_type);
+
+    animal.display_info();
+
+    Person::alert_something();
+    Animal::alert_something();
 }
 
 fn check_person_id(id: PersonId) {
@@ -83,7 +109,7 @@ fn check_person_id(id: PersonId) {
     } else {
         println!("Not Matching");
     }
-    
+
     match id {
         PersonId::IdentityCard(x, y, z) => {
             println!("{} {} {}", x, y, z);
@@ -92,5 +118,4 @@ fn check_person_id(id: PersonId) {
             println!("{}", x)
         }
     }
-    
 }
