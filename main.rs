@@ -1,17 +1,23 @@
-use rust_webassembly_with_ts::logger;
-use rust_webassembly_with_ts::logger_2;
-use rust_webassembly_with_ts::Animal;
-use rust_webassembly_with_ts::Person;
+// use rust_webassembly_with_ts::logger;
+// use rust_webassembly_with_ts::logger_2;
+// use rust_webassembly_with_ts::Animal;
+// use rust_webassembly_with_ts::Person;
+
+// use rust_webassembly_with_ts::*;
+use rust_webassembly_with_ts::learning_rust::{top_level::{self, low_level}, Log, Person};
+// use std;
 
 fn main() {
     let person = Person::new();
-    let animal = Animal("dog".to_string(), 2, "indie".to_string());
 
-    // person.alert_something();
-    // animal.alert_something();
+    // absolute path
+    // crate::top_level::test_1();
+    // crate::low_level::test_1();
 
-    // logger(animal);
-    logger(person);
+    // relative path
+    // top_level::test_1();
+    // low_level::test_1();
+    // person.display_info();
 
-    logger_2(&animal);
+    println!("{}", person.name());
 }
