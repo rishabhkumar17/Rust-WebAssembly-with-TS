@@ -9,6 +9,8 @@ pub mod education {
 
     pub mod learning_rust {
 
+        use std::fmt;
+
         pub mod top_level {
             pub fn test_1() {
                 println!("Test 1")
@@ -28,17 +30,30 @@ pub mod education {
             }
         }
 
-        #[derive(Debug)]
-        enum PersonId {
+        // #[derive(Debug)]
+        pub enum PersonId {
             // either Passport or IdentityCard
             Passport(String),
             IdentityCard(String, u32, u32),
         }
 
+        impl fmt::Display for PersonId {
+            fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+                match self {
+                    PersonId::Passport(x) => {
+                        write!(f, "{}", x)
+                    }
+                    PersonId::IdentityCard(x, y, z) => {
+                        write!(f, "({} {} {})", x, y, z)
+                    }
+                }
+            }
+        }
+
         pub struct Person {
             pub name: String, // fields
             age: u32,
-            id: PersonId,
+            pub id: PersonId,
         }
 
         impl Log for Person {
@@ -52,7 +67,7 @@ pub mod education {
 
                 crate::another_lib::another_mod::another_fn();
 
-                println!("{} {} {:?}", self.name, self.age, self.id);
+                println!("{} {} {}", self.name, self.age, self.id);
             }
         }
 

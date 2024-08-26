@@ -17,7 +17,10 @@ fn main() {
     // relative path
     // top_level::test_1();
     // low_level::test_1();
-    person.display_info();
+    // person.display_info();
 
-    println!("{}", person.name());
+    // println!("{}", person.name());
+
+
+    println!("{}", person.id);
 }
