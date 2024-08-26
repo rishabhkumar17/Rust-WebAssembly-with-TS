@@ -1,4 +1,7 @@
+mod another_lib;
+
 fn outsider() {
+    another_lib::another_mod::another_fn();
     println!("Outsider!")
 }
 
@@ -44,6 +47,10 @@ pub mod education {
 
                 // going outside of current module ( .. )
                 super::super::outsider();
+
+                super::super::another_lib::another_mod::another_fn();
+
+                crate::another_lib::another_mod::another_fn();
 
                 println!("{} {} {:?}", self.name, self.age, self.id);
             }
