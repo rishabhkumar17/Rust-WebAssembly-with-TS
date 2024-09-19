@@ -9,7 +9,7 @@ import init, { greet } from "rust_webassembly_with_ts";
 // await start();
 
 
-init().then(wasm => {
-    wasm.greet("Filip");
+init().then(_ => {
+    greet("Filip");
     console.log("Yeah!")
 })
