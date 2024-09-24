@@ -1,4 +1,4 @@
-import init, { greet } from "rust_webassembly_with_ts";
+import init, { World } from "rust_webassembly_with_ts";
 
 // async function start() {
 //     const wasm = await init();
@@ -10,6 +10,6 @@ import init, { greet } from "rust_webassembly_with_ts";
 
 
 init().then(_ => {
-    greet("Filip");
-    console.log("Yeah!")
+    const world = World.new();
+    console.log(world.width);
 })

@@ -17,6 +17,6 @@
     "rust_webassembly_with_ts": "file:../pkg"
   },
   "devDependencies": {
-    "webpack-dev-server": "^5.0.4"
+    "webpack-dev-server": "^5.1.0"
   }
 }
