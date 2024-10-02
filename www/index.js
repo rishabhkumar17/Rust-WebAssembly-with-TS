@@ -26,6 +26,7 @@ init().then(_ => {
         ctx.stroke();
     }
 
+    console.log(world.snake_head_idx());
     drawWorld();
 })
 
