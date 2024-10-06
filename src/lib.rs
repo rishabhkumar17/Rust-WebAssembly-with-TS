@@ -22,13 +22,16 @@ impl Snake {
 pub struct World {
     pub width: usize,
     snake: Snake,
+    size: usize,
 }
 
 #[wasm_bindgen]
 impl World {
     pub fn new() -> World {
+        let width: usize = 8;
         World {
-            width: 8,
+            width,
+            size: width * width,
             snake: Snake::new(10),
         }
     }
@@ -39,6 +42,11 @@ impl World {
 
     pub fn snake_head_idx(&self) -> usize {
         self.snake.body[0].0
+    }
+
+    pub fn update(&mut self) {
+        let snake_idx: usize = self.snake_head_idx();
+        self.snake.body[0].0 = (snake_idx + 1) % self.size;
     }
 }
 
