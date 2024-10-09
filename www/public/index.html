@@ -5,10 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .content_wrapper {
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Snake Game</h1>
+    <div class="content_wrapper">
+        <canvas id="snake_canvas"></canvas>
+    </div>
     <script src="./bootstrap.js"></script>
 </body>
 
